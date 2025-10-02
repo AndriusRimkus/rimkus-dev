@@ -5,14 +5,14 @@ pubDate: 'Oct 02 2025'
 category: 'ai notes'
 ---
 
-I've always known AI is more than just LLMs and their wrappers.
-But browsing sites like [HuggingFace](https://huggingface.co/) would quickly make me feel overwhelmed.
+I knew AI was more than LLMs and wrappers,
+but scrolling through [HuggingFace](https://huggingface.co/) left me overwhelmed pretty quickly.
 
-This journey is about taking crude but consistent steps to get familiar with the landscape.
+This is me taking small (hopefully consistent) steps to get familiar with the landscape.
 
 ## New Python Project
 
-Python has a nice package and environment manager called [uv](https://docs.astral.sh/uv/).
+Python has a great package and environment manager called [uv](https://docs.astral.sh/uv/).
 It feels like the good old npm. A few key commands:
 
 ```sh
@@ -22,8 +22,7 @@ uv add --dev ruff
 uv run script.py
 ```
 
-By the same company, [ruff](https://docs.astral.sh/ruff/) is a modern Python linter and formatter.
-Basically, ESLint and Prettier for Python.
+Same folks also made [ruff](https://docs.astral.sh/ruff/), which is basically ESLint and Prettier for Python:
 
 ```sh
 ruff check
@@ -32,8 +31,8 @@ ruff format
 
 ## Running Transformers
 
-I barely scratched the surface of the [Transformers](https://huggingface.co/docs/transformers/en/index) library, but gotta start somewhere.
-A tiny script that runs a sentiment analysis model on a few sentences:
+I barely scratched the surface of the [Transformers](https://huggingface.co/docs/transformers/en/index) library,
+but here's a tiny script that runs a sentiment analysis:
 
 ```py
 from transformers import pipeline
