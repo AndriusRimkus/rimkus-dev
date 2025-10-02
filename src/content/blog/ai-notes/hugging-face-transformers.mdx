@@ -1,0 +1,82 @@
+---
+title: 'HuggingFace Transformers Library'
+description: 'Wanted to get comfortable with creating a new Python project. Ran the first HuggingFace model through their transformers library.'
+pubDate: 'Oct 02 2025'
+category: 'ai notes'
+---
+
+I've always known AI is more than just LLMs and their wrappers.
+But browsing sites like [HuggingFace](https://huggingface.co/) would quickly make me feel overwhelmed.
+
+This journey is about taking crude but consistent steps to get familiar with the landscape.
+
+## New Python Project
+
+Python has a nice package and environment manager called [uv](https://docs.astral.sh/uv/).
+It feels like the good old npm. A few key commands:
+
+```sh
+uv init example
+uv add transformers
+uv add --dev ruff
+uv run script.py
+```
+
+By the same company, [ruff](https://docs.astral.sh/ruff/) is a modern Python linter and formatter.
+Basically, ESLint and Prettier for Python.
+
+```sh
+ruff check
+ruff format
+```
+
+## Running Transformers
+
+I barely scratched the surface of the [Transformers](https://huggingface.co/docs/transformers/en/index) library, but gotta start somewhere.
+A tiny script that runs a sentiment analysis model on a few sentences:
+
+```py
+from transformers import pipeline
+from torch import cuda
+
+
+def run():
+    if cuda.is_available():
+        device = f"GPU: {cuda.get_device_name(0)}"
+    else:
+        device = "CPU only"
+
+    print(device)
+
+    classifier = pipeline(
+        "sentiment-analysis",
+         # HuggingFace model
+        model="distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+        # pinning model version
+        revision="714eb0f",
+    )
+
+    sentences = [
+        "My first experience with the transformers library.",
+        "I might struggle with it at first.",
+        "But let's proceed!",
+    ]
+
+    for text in sentences:
+        result = classifier(text)[0]
+        print(f"{text} - {result['label']} ({result['score']:.2%})")
+
+
+if __name__ == "__main__":
+    run()
+```
+
+Output:
+
+```
+GPU: NVIDIA GeForce GTX 1650
+Device set to use cuda:0
+My first experience with the transformers library. - POSITIVE (90.80%)
+I might struggle with it at first. - NEGATIVE (99.91%)
+But let's proceed! - POSITIVE (99.34%)
+```

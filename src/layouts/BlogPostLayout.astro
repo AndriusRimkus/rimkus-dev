@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Pill from '../components/Pill.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, category } = Astro.props;
+
+const classesA =
+    'prose-a:text-indigo-500 prose-a:no-underline prose-a:hover:text-indigo-700 prose-a:hover:underline';
+---
+
+<BaseLayout title={title} description={description}>
+    <article class:list={['prose prose-neutral prose-lg', classesA]}>
+        <h1 class="mb-4">{title}</h1>
+        <div class="mb-8 flex items-center justify-end gap-2 text-xs">
+            <span class="text-neutral-500">
+                <FormattedDate date={pubDate} />
+            </span>
+            <Pill text={category} />
+        </div>
+        <slot />
+    </article>
+</BaseLayout>
