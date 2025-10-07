@@ -1,12 +1,12 @@
 ---
-title: 'HuggingFace Transformers Library'
-description: 'Wanted to get comfortable with creating a new Python project. Ran the first HuggingFace model through their transformers library.'
+title: 'Hugging Face Transformers Library (Part 1)'
+description: 'Wanted to get comfortable with creating a new Python project. Ran the first Hugging Face model through their transformers library.'
 pubDate: 'Oct 02 2025'
 category: 'ai notes'
 ---
 
 I knew AI was more than LLMs and wrappers,
-but scrolling through [HuggingFace](https://huggingface.co/) left me overwhelmed pretty quickly.
+but scrolling through [Hugging Face](https://huggingface.co/) left me overwhelmed pretty quickly.
 
 This is me taking small (hopefully consistent) steps to get familiar with the landscape.
 
@@ -32,7 +32,7 @@ ruff format
 ## Running Transformers
 
 I barely scratched the surface of the [Transformers](https://huggingface.co/docs/transformers/en/index) library,
-but here's a tiny script that runs sentiment analysis:
+but with a little help from an LLM, here's a tiny script that runs sentiment analysis:
 
 ```py
 from transformers import pipeline
@@ -49,7 +49,7 @@ def run():
 
     classifier = pipeline(
         "sentiment-analysis",
-         # HuggingFace model
+         # Hugging Face model
         model="distilbert/distilbert-base-uncased-finetuned-sst-2-english",
         # pinning model version
         revision="714eb0f",
@@ -79,3 +79,7 @@ My first experience with the transformers library. - POSITIVE (90.80%)
 I might struggle with it at first. - NEGATIVE (99.91%)
 But let's proceed! - POSITIVE (99.34%)
 ```
+
+## Next Steps
+
+- Hugging Face recommends starting with their [LLM Course](https://huggingface.co/learn/llm-course/chapter0/1).
