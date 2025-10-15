@@ -97,8 +97,8 @@ export function useSentimentAnalysis(
         isAnalyzing,
         error,
 
-        initPipeline,
         analyze,
+        initPipeline,
         reset,
         dispose,
     };
