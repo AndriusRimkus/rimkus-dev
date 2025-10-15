@@ -1,9 +1,9 @@
 {
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "rimkus-dev",
-  "compatibility_date": "2025-10-02",
-  "assets": {
-    "directory": "./dist",
-    "html_handling": "drop-trailing-slash"
-  }
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "rimkus-dev",
+    "compatibility_date": "2025-10-02",
+    "assets": {
+        "directory": "./dist",
+        "html_handling": "drop-trailing-slash",
+    },
 }
