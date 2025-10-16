@@ -1,0 +1,25 @@
+---
+import About, { Aside } from '@/content/about.mdx';
+import AsideLayout from '@/layouts/AsideLayout.astro';
+
+const classesA =
+    'prose-a:text-indigo-500 prose-a:no-underline prose-a:hover:text-indigo-700 prose-a:hover:underline';
+
+
+console.log(Aside);
+---
+
+<AsideLayout
+    title="Andrius Rimkus CV"
+    description="Full-stack developer with 7+ years of startup experience, focused on Laravel, Vue, and clean design."
+>
+    <article class:list={['prose prose-neutral', classesA]}>
+        <About />
+    </article>
+
+    <Fragment slot="aside">
+        <div class="prose">
+            <Aside />
+        </div>
+    </Fragment>
+</AsideLayout>

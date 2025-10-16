@@ -1,0 +1,22 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+    <div class="flex gap-8">
+        <div class="flex-1">
+            <slot />
+        </div>
+
+        <aside class="w-80 flex-shrink-0 hidden md:block">
+            <slot name="aside" />
+        </aside>
+    </div>
+</BaseLayout>
