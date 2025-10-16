@@ -1,0 +1,19 @@
+---
+title: 'Exploring Transformers.js with Hugging Face'
+description: 'A simple demo of sentiment analysis using Transformers.js and Hugging Face models.'
+pubDate: 'Oct 07 2025'
+category: 'ai demos'
+---
+
+import SentimentAnalysis from '@/components/demos/SentimentAnalysis.vue';
+
+## Sentiment Analysis
+
+[Transformers.js](https://huggingface.co/docs/transformers.js/en/index) lets you run transformer models right in the browser or in Node.js.
+Only a [few models](https://huggingface.co/models?library=transformers.js&sort=trending) are supported for now, but it’s great for quick experiments.
+
+Below is a simple sentiment analysis demo built with Transformers.js and Vue.js.
+
+[![View on GitHub](https://img.shields.io/badge/View%20Source-%2312100E.svg?logo=github&logoColor=white)](https://github.com/AndriusRimkus/rimkus-dev/blob/main/src/components/demos/SentimentAnalysis.vue)
+
+<SentimentAnalysis client:only="vue" class="not-prose" />
