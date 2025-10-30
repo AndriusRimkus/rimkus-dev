@@ -2,39 +2,88 @@ export function Aside() {
     return (
         <>
             <h2>Skills</h2>
+            <div class="print:grid print:grid-cols-2 print:gap-8">
+                <div>
+                    <h4 class="print:mt-0">Proficient in:</h4>
+                    <ul class="print:mb-0 print:[&>:last-child]:mb-0">
+                        <li>Laravel: 7+ years</li>
+                        <li>Vue.js: 7+ years</li>
+                        <li>Nuxt</li>
+                        <li>SPAs and SSR</li>
+                        <li>PostgreSQL / MySQL</li>
+                        <li>Database and JS performance</li>
+                        <li>SEO</li>
+                    </ul>
+                </div>
 
-            <p>Proficient in:</p>
-            <ul>
-                <li>Laravel (PHP)</li>
-                <li>Vue.js (2 & 3)</li>
-                <li>Nuxt</li>
-                <li>SPAs and SSR</li>
-                <li>PostgreSQL / MySQL</li>
-                <li>Database and JS performance</li>
-                <li>SEO</li>
-            </ul>
+                <div>
+                    <h4 class="print:mt-0">Familiar with:</h4>
+                    <ul class="print:mb-0 print:[&>:last-child]:mb-0">
+                        <li>TypeScript</li>
+                        <li>ElasticSearch</li>
+                        <li>React</li>
+                        <li>Next.js</li>
+                        <li>Astro</li>
+                        <li>AI/ML basics</li>
+                        <li>Docker</li>
+                        <li>CI/CD</li>
+                    </ul>
+                </div>
+            </div>
+        </>
+    );
+}
 
-            <p>Familiar with:</p>
-            <ul>
-                <li>TypeScript</li>
-                <li>ElasticSearch</li>
-                <li>React</li>
-                <li>Next.js</li>
-                <li>Astro</li>
-                <li>Python</li>
-                <li>AI/ML basics</li>
-                <li>Docker</li>
-                <li>CI/CD</li>
-            </ul>
+import { Mail, Link } from 'lucide-vue-next';
+
+export function Aside() {
+    return (
+        <>
+            <h2>Skills</h2>
+            <div class="print:grid print:grid-cols-2 print:gap-8">
+                <div>
+                    <h4 class="print:mt-0">Proficient in:</h4>
+                    <ul class="print:mb-0 print:[&>:last-child]:mb-0">
+                        <li>Laravel: 7+ years</li>
+                        <li>Vue.js: 7+ years</li>
+                        <li>Nuxt</li>
+                        <li>SPAs and SSR</li>
+                        <li>PostgreSQL / MySQL</li>
+                        <li>Database and JS performance</li>
+                        <li>SEO</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="print:mt-0">Familiar with:</h4>
+                    <ul class="print:mb-0 print:[&>:last-child]:mb-0">
+                        <li>TypeScript</li>
+                        <li>ElasticSearch</li>
+                        <li>React</li>
+                        <li>Next.js</li>
+                        <li>Astro</li>
+                        <li>AI/ML basics</li>
+                        <li>Docker</li>
+                        <li>CI/CD</li>
+                    </ul>
+                </div>
+            </div>
         </>
     );
 }
 
 # Andrius Rimkus
 
-📧 [rimkusrimkus@gmail.com](mailto:rimkusrimkus@gmail.com)  
-🔗 [linkedin.com/in/andrius-rimkus](https://www.linkedin.com/in/andrius-rimkus)  
-🔗 [github.com/AndriusRimkus](https://github.com/AndriusRimkus)
+<div class="grid grid-cols-[auto_1fr] items-center gap-x-2 gap-y-2">
+    <Mail class="w-4 h-4 text-gray-600" />
+    <a href="mailto:rimkusrimkus@gmail.com">{'rimkusrimkus@gmail.com'}</a>
+
+    <Link class="w-4 h-4 text-gray-600" />
+    <a href="https://www.linkedin.com/in/andrius-rimkus">linkedin.com/in/andrius-rimkus</a>
+
+    <Link class="w-4 h-4 text-gray-600" />
+    <a href="https://github.com/AndriusRimkus">github.com/AndriusRimkus</a>
+</div>
 
 ---
 
@@ -49,7 +98,11 @@ Full-stack developer with 7+ years of startup experience. Played a key role in a
     <Aside />
 </div>
 
+<div class="print:break-before-page"></div>
+
+<span class="print:hidden">
 ---
+</span>
 
 ## Experience
 
@@ -80,7 +133,12 @@ Solely responsible for building this data-driven project from the ground up - ba
 
 **Technologies:** Laravel (PHP), VueJS, PostgreSQL
 
+<div class="print:break-before-page"></div>
+
+<span class="print:hidden">
 ---
+</span>
+
 
 ### iTo | UAB “Informacinių technologijų organizacija”  
 **Junior Web Developer**  
