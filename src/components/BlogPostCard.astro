@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-import FormattedDate from './FormattedDate.astro';
 import Pill from './Pill.astro';
 
 interface Props {
@@ -15,9 +14,6 @@ const { post } = Astro.props;
     class="group block rounded-sm border border-neutral-200 p-4 hover:border-neutral-300"
 >
     <div class="flex items-center gap-2 text-xs">
-        <span class="text-neutral-500">
-            <FormattedDate date={post.data.pubDate} />
-        </span>
         <Pill text={post.data.category} />
     </div>
 
