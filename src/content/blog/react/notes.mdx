@@ -41,6 +41,7 @@ useEffect(() => {
 ### Cleanup Function
 
 Return a function from `useEffect()` to clean up side effects. It runs before the effect re-executes and when the component unmounts.
+Cleanup functions capture state/props from the previous render (old scope).
 
 ```tsx
 useEffect(() => {
