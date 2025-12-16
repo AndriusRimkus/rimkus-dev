@@ -5,6 +5,100 @@ pubDate: 'Dec 09 2025'
 category: 'react'
 ---
 
+## UseEffect
+
+`useEffect()` is an escape hatch for synchronizing with external systems (APIs, DOM manipulation, third-party libraries, browser APIs).
+It should not be used for orchestrating the state. React linters will warn against that.
+
+[useEffect() documentation](https://react.dev/reference/react/useEffect) | [You Might Not Need an Effect](https://react.dev/learn/you-might-not-need-an-effect)
+
+### Dependency Patterns
+
+**With dependencies** - runs after the initial render and when dependencies change:
+
+```tsx
+useEffect(() => {
+  fetchData(userId);
+}, [userId]);
+```
+
+**No dependencies** - runs after every render:
+
+```tsx
+useEffect(() => {
+  console.log('Runs on every render');
+});
+```
+
+**Empty array** - runs once after initial mount:
+
+```tsx
+useEffect(() => {
+  const connection = connectToServer();
+}, []);
+```
+
+### Cleanup Function
+
+Return a function from `useEffect()` to clean up side effects. It runs before the effect re-executes and when the component unmounts.
+
+```tsx
+useEffect(() => {
+  const subscription = api.subscribe(id);
+  
+  return () => {
+    subscription.unsubscribe();
+  };
+}, [id]);
+```
+
+Common cleanup use cases: clearing timers, canceling requests, unsubscribing from events.
+
+### Dev Strict Mode
+
+In development, React runs effects twice to help find bugs. This only happens in Strict Mode.
+
+```tsx
+useEffect(() => {
+  console.log('You should see me twice in dev mode');
+  return () => console.log('And me in between!');
+}, []);
+```
+
+[Strict Mode documentation](https://react.dev/reference/react/StrictMode)
+
+### useEffectEvent()
+
+Allows defining event handlers that always have access to the latest state and props without needing to include them in the dependency array.
+
+```tsx
+const onVisit = useEffectEvent((url) => {
+  logAnalytics(url, shoppingCart);
+});
+
+useEffect(() => {
+  onVisit(url);
+}, [url]);
+```
+
+[useEffectEvent documentation](https://react.dev/reference/react/useEffectEvent)
+
+### Timeline
+
+There could be more nuances to this, but generally the order of things is as follows:
+
+1. Component render logic
+2. React commits to DOM
+3. `useLayoutEffect()` cleanup
+4. `useLayoutEffect()` effect
+5. Browser paints
+6. `useEffect()` cleanup
+7. `useEffect()` effect
+
+Important notes:
+- `useLayoutEffect()` runs before the browser paints, blocking visual updates until it's done.
+- Cleanup functions capture state/props from the previous render (old scope).
+
 ## Memoization
 
 Different from how Vue.js operates, React reexecutes Component function body on every render cycle.
