@@ -5,6 +5,88 @@ pubDate: 'Dec 09 2025'
 category: 'react'
 ---
 
+## useState
+
+`useState()` is a Hook that adds a state variable to your component.
+This variable persists across renders and triggers re-renders when updated.
+
+[useState() documentation](https://react.dev/reference/react/useState)
+
+```tsx
+const [count, setCount] = useState(0);
+```
+
+### Initialization
+
+Pass the initial value directly or use an **initializer function** for expensive computations:
+
+```tsx
+const [todos, setTodos] = useState(createTodos()); // Re-runs on every render
+const [todos, setTodos] = useState(createTodos); // Runs once once on init
+```
+
+### Updating
+
+Call the setter function with a value or an **updater function**:
+
+```tsx
+setCount(5);
+setCount(c => c + 1); // The convention: 'c' for 'count'
+```
+
+**Updater functions are stacked**: When called multiple times in the same render cycle, each updater receives the latest state:
+
+```tsx
+// Only increments by 1
+setAge(age + 1);
+setAge(age + 1);
+
+// Increments by 3
+setAge(a => a + 1);
+setAge(a => a + 1);
+```
+
+### Patterns
+
+**State reset with key**: Pass a different `key` prop to force React to recreate a component and reset its state:
+
+```tsx
+<Form key={version} />
+```
+
+**Storing previous render values (rarely needed)**:
+
+```tsx
+if (prevCount !== count) {
+  setPrevCount(count);
+  setTrend(count > prevCount ? 'increasing' : 'decreasing');
+}
+```
+
+### Pitfalls
+
+**State updates are asynchronous**: Reading state after calling the setter returns the old value:
+
+```tsx
+setCount(count + 1);
+console.log(count); // Still the old value
+```
+
+**Objects/arrays must be replaced, not mutated**: React uses `Object.is` comparison to detect changes:
+
+```tsx
+// Will not trigger re-render
+obj.x = 10;
+setObj(obj);
+
+// Will trigger re-render
+setObj({ ...obj, x: 10 });
+```
+
+### Dev Strict Mode
+
+In Dev Strict Mode, React calls initializer and updater functions twice.
+
 ## UseEffect
 
 `useEffect()` is an escape hatch for synchronizing with external systems (APIs, DOM manipulation, third-party libraries, browser APIs).
