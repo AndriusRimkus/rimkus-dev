@@ -20,7 +20,7 @@ Pass the initial value directly or use an **initializer function** for expensive
 
 ```tsx
 const [todos, setTodos] = useState(createTodos()); // Re-runs on every render
-const [todos, setTodos] = useState(createTodos); // Runs once once on init
+const [todos, setTodos] = useState(createTodos); // Runs once on init
 ```
 
 ## Updating
@@ -29,7 +29,7 @@ Call the setter function with a value or an **updater function**:
 
 ```tsx
 setCount(5);
-setCount(c => c + 1); // The convention: 'c' for 'count'
+setCount((c) => c + 1); // The convention: 'c' for 'count'
 ```
 
 **Updater functions are stacked**: When called multiple times in the same render cycle, each updater receives the latest state:
@@ -40,8 +40,8 @@ setAge(age + 1);
 setAge(age + 1);
 
 // Increments by 3
-setAge(a => a + 1);
-setAge(a => a + 1);
+setAge((a) => a + 1);
+setAge((a) => a + 1);
 ```
 
 ## Patterns
@@ -56,8 +56,8 @@ setAge(a => a + 1);
 
 ```tsx
 if (prevCount !== count) {
-  setPrevCount(count);
-  setTrend(count > prevCount ? 'increasing' : 'decreasing');
+    setPrevCount(count);
+    setTrend(count > prevCount ? 'increasing' : 'decreasing');
 }
 ```
 
