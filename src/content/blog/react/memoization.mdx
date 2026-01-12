@@ -1,0 +1,57 @@
+---
+title: 'Memoization'
+description: 'Optimizing React component performance with memoization.'
+pubDate: 'Dec 01 2025'
+category: 'react'
+---
+
+Different from how Vue.js operates, React reexecutes Component function body on every render cycle.
+
+Main re-render triggers include:
+
+- Parent component re-renders
+- State (useState) or props change
+- Context value changes
+
+## React Compiler
+
+Latest React docs highly recommend using the [React Compiler](https://react.dev/learn/react-compiler) to optimize re-renders automatically.
+That allows basically forgetting about memoization in vast majority of cases.
+
+## React.memo
+
+Outputs a higher-order component which skips re-rendering when the parent re-renders, given the props are the same (shallow comparison).
+
+```tsx
+const MemoizedComponent = React.memo(function MyComponent({ name }) {
+    return <div>Hello, {name}</div>;
+});
+```
+
+[React.memo documentation](https://react.dev/reference/react/memo)
+
+## useMemo()
+
+A React hook producing a memoized value. Recomputes the value only when one of the dependencies change.
+Often used together with React.memo.
+
+```tsx
+const expensiveValue = useMemo(() => {
+    return computeExpensiveValue(a, b);
+}, [a, b]);
+```
+
+[useMemo documentation](https://react.dev/reference/react/useMemo)
+
+## useCallback()
+
+Caches a function definition between re-renders. It does not execute the function.
+It's syntactic sugar for useMemo when the memoized value is a function.
+
+```tsx
+const handleClick = useCallback(() => {
+    doSomething(a, b);
+}, [a, b]);
+```
+
+[useCallback documentation](https://react.dev/reference/react/useCallback)

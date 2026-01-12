@@ -1,0 +1,21 @@
+---
+import Pill from '@/components/Pill.astro';
+
+interface Props {
+    title: string;
+    category: string;
+}
+
+const { title, category } = Astro.props;
+
+const classesA =
+    'prose-a:text-indigo-500 prose-a:no-underline prose-a:hover:text-indigo-700 prose-a:hover:underline';
+---
+
+<article class:list={['prose prose-neutral prose-lg', classesA]}>
+    <h1 class="mb-4">{title}</h1>
+    <div class="mb-8 flex items-center justify-end gap-2 text-xs">
+        <Pill text={category} />
+    </div>
+    <slot />
+</article>

@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import SidebarLink from '@/components/SidebarLink.astro';
+
+interface Props {
+    relatedPosts: CollectionEntry<'blog'>[];
+    currentPost: CollectionEntry<'blog'>;
+}
+
+const { relatedPosts, currentPost } = Astro.props;
+---
+
+<nav class="sticky top-8">
+    <h3 class="mb-4 text-sm font-semibold text-neutral-700">Related Articles</h3>
+    <ul class="space-y-2 text-sm">
+        {
+            relatedPosts.map((post) => (
+                <li>
+                    <SidebarLink
+                        href={`/${post.id}`}
+                        title={post.data.title}
+                        isActive={post.id === currentPost.id}
+                    />
+                </li>
+            ))
+        }
+    </ul>
+</nav>

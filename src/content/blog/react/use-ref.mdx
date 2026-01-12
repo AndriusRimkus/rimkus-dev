@@ -1,0 +1,90 @@
+---
+title: 'useRef'
+description: 'Referencing values and DOM elements in React.'
+pubDate: 'Dec 04 2025'
+category: 'react'
+---
+
+`useRef()` is an escape hatch that provides a mutable value container persisting across renders.
+Unlike state, updating a ref doesn't trigger re-renders. Refs should not be read or written during the render phase (component function body or JSX).
+
+[useRef() documentation](https://react.dev/reference/react/useRef) | [Referencing Values with Refs](https://react.dev/learn/referencing-values-with-refs) | [Manipulating the DOM with Refs](https://react.dev/learn/manipulating-the-dom-with-refs)
+
+## Storing arbitrary values
+
+`useRef()` can hold any value, not just DOM elements. Use it for storing mutable values that shouldn't trigger re-renders:
+
+```tsx
+const intervalId = useRef(null);
+
+useEffect(() => {
+    intervalId.current = setInterval(() => {
+        console.log('Tick');
+    }, 1000);
+
+    return () => clearInterval(intervalId.current);
+}, []);
+```
+
+This is beneficial for values that need to persist across renders without causing re-renders (timers, subscriptions, previous values).
+
+## Storing DOM elements
+
+`useRef()` is commonly used to reference DOM elements directly. DOM refs are initialized and updated after React commits to the DOM:
+
+```tsx
+const inputRef = useRef(null);
+
+useEffect(() => {
+    inputRef.current.focus();
+}, []);
+
+return <input ref={inputRef} />;
+```
+
+**Callback refs** can be used for more control over ref lifecycle:
+
+```tsx
+<input
+    ref={(node) => {
+        if (node) {
+            node.focus();
+        }
+    }}
+/>
+```
+
+## Passing ref to child components
+
+In React 19, refs can be passed directly as props without `forwardRef`:
+
+```tsx
+function CustomInput({ ref }) {
+    return <input ref={ref} />;
+}
+
+// Usage
+const inputRef = useRef(null);
+<CustomInput ref={inputRef} />;
+```
+
+**useImperativeHandle** customizes the ref value exposed to parent components:
+
+[useImperativeHandle documentation](https://react.dev/reference/react/useImperativeHandle)
+
+```tsx
+function CustomInput({ ref }) {
+    const inputRef = useRef(null);
+
+    useImperativeHandle(ref, () => ({
+        focus: () => inputRef.current.focus(),
+        clear: () => {
+            inputRef.current.value = '';
+        },
+    }));
+
+    return <input ref={inputRef} />;
+}
+
+// Parent can call: ref.current.focus() or ref.current.clear()
+```
